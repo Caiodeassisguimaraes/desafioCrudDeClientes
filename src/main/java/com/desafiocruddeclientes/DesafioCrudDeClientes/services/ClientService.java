@@ -29,4 +29,17 @@ public class ClientService {
         return clientPageList.map(registry ->new ClientDTO(registry));
     }
 
+    @Transactional()
+    public ClientDTO insert(ClientDTO clientDTO){
+        Client clientEntity = new Client();
+        clientEntity.setName(clientDTO.getName());
+        clientEntity.setCpf(clientDTO.getCpf());
+        clientEntity.setIncome(clientDTO.getIncome());
+        clientEntity.setBirthDate(clientDTO.getBirthDate());
+        clientEntity.setChildren(clientDTO.getChildren());
+
+        clientEntity = clientRepository.save(clientEntity);
+        return new ClientDTO(clientEntity);
+    }
+
 }
