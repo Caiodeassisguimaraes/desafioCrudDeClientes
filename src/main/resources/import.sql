@@ -1,0 +1,10 @@
+INSERT INTO tb_client (name, cpf, income, birth_date, children) VALUES ('Hal Jordan', '00000000000', 7000.00, '1986-08-28', 0);
+INSERT INTO tb_client (name, cpf, income, birth_date, children) VALUES ('Bruce Thomas Wayne', '11111111111', 100000000000.00, '1999-02-19', 1);
+INSERT INTO tb_client (name, cpf, income, birth_date, children) VALUES ('Kal-El', '22222222222', 10000.00, '1980-02-20', 1);
+INSERT INTO tb_client (name, cpf, income, birth_date, children) VALUES ('Barry Allen', '33333333333', 6000.00, '1992-09-30', 2);
+INSERT INTO tb_client (name, cpf, income, birth_date, children) VALUES('Homer Simpson', '44444444444', 5000.00, '1956-05-15', 3);
+INSERT INTO tb_client (name, cpf, income, birth_date, children) VALUES ('Marge Simpson', '55555555555', 0.00, '1956-01-01', 3);
+INSERT INTO tb_client (name, cpf, income, birth_date, children) VALUES ('TChalla', '66666666666', 10000000000.00, '1992-08-10', 1);
+INSERT INTO tb_client (name, cpf, income, birth_date, children) VALUES ('Frank Sinatra', '77777777777', 1000000.00, '1915-12-15', 3);
+INSERT INTO tb_client (name, cpf, income, birth_date, children) VALUES ('Son Goku', '88888888888', 0.00, '1984-12-03', 2);
+INSERT INTO tb_client (name, cpf, income, birth_date, children) VALUES ('Tony Hawk', '99999999999', 1000000000.00, '1968-03-12', 1);
