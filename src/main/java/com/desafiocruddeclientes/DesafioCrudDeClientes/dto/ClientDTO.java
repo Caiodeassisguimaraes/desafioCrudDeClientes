@@ -1,15 +1,20 @@
 package com.desafiocruddeclientes.DesafioCrudDeClientes.dto;
 
 import com.desafiocruddeclientes.DesafioCrudDeClientes.entities.Client;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.PastOrPresent;
 
 import java.time.LocalDate;
 
 public class ClientDTO {
 
     private Long id;
+    @NotBlank (message = "Campo obrigatório")
     private String name;
     private String cpf;
     private Double income;
+
+    @PastOrPresent(message = "Data de nascimento inválida")
     private LocalDate birthDate;
     private Integer children;
 
