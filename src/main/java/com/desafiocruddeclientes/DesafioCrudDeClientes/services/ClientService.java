@@ -3,7 +3,10 @@ package com.desafiocruddeclientes.DesafioCrudDeClientes.services;
 import com.desafiocruddeclientes.DesafioCrudDeClientes.dto.ClientDTO;
 import com.desafiocruddeclientes.DesafioCrudDeClientes.entities.Client;
 import com.desafiocruddeclientes.DesafioCrudDeClientes.repositories.ClientRepository;
+import com.desafiocruddeclientes.DesafioCrudDeClientes.services.exceptions.ResourceNotFoundException;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -19,7 +22,7 @@ public class ClientService {
 
     @Transactional(readOnly = true)
     public ClientDTO findById(Long id){
-        Client client = clientRepository.findById(id).get();
+        Client client = clientRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Recurso não encontrado"));
         return new ClientDTO(client);
     }
 
@@ -39,15 +42,26 @@ public class ClientService {
 
     @Transactional()
     public ClientDTO update(Long id, ClientDTO clientDTO){
-        Client clientEntity = clientRepository.getReferenceById(id);
-        copyDtoToEntity (clientDTO, clientEntity);
-        clientEntity = clientRepository.save(clientEntity);
-        return new ClientDTO(clientEntity);
+        try {
+            Client clientEntity = clientRepository.getReferenceById(id);
+            copyDtoToEntity(clientDTO, clientEntity);
+            clientEntity = clientRepository.save(clientEntity);
+            return new ClientDTO(clientEntity);
+        }
+        catch(EntityNotFoundException error){
+            throw new ResourceNotFoundException("Recurso não encontrato");
+
+        }
     }
 
     @Transactional
     public void delete(Long id){
-        clientRepository.deleteById(id);
+        try {
+            clientRepository.deleteById(id);
+        }
+        catch(EmptyResultDataAccessException error){
+            throw new ResourceNotFoundException("Recurso não encontrato");
+        }
     }
 
     private void copyDtoToEntity(ClientDTO clientDTO, Client clientEntity) {
